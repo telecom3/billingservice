@@ -1,0 +1,42 @@
+package org.telecom.billingservice.authoritymag.querydao.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Repository;
+import org.telecom.billingservice.authoritymag.mapper.AuthorityQueryMapper;
+import org.telecom.billingservice.authoritymag.querydao.IAuthorityQueryDao;
+import org.telecom.billingservice.bean.AuthorityInfoBean;
+
+/**
+ * 实现持久层权限类
+ * @author wzc
+ *
+ */
+@Repository
+public class AuthorityQueryDaoImpl implements IAuthorityQueryDao {
+	@Resource
+	private AuthorityQueryMapper authorityQueryMapper;
+	
+	
+
+	@Override
+	public AuthorityInfoBean findAuthorityInfoBeanById(long id) {
+		// TODO Auto-generated method stub
+		return authorityQueryMapper.findAuthorityInfoBeanById(id);
+	}
+
+
+
+	@Override
+	public List<AuthorityInfoBean> findAllAuthorityInfoBean() {
+		// TODO Auto-generated method stub
+		return authorityQueryMapper.findAllAuthorityInfoBean();
+	}
+
+
+
+	
+
+}

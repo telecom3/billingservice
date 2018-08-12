@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>电信</title>
+        <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+        <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+        <script src="../static/layui/layui.js"></script>
+    </head>
+    <body class="index">
+        <!--导航区域开始-->
+       <!-- <div id="index_navi">
+            <ul id="menu">
+                <li><a href="index.html" class="index_on"></a></li>
+                <li><a href="role/role_list.html" class="role_off"></a></li>
+                <li><a href="admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="fee/fee_list.html" class="fee_off"></a></li>
+                <li><a href="account/account_list.html" class="account_off"></a></li>
+                <li><a href="service/service_list.html" class="service_off"></a></li>
+                <li><a href="bill/bill_list.html" class="bill_off"></a></li>
+                <li><a href="report/report_list.html" class="report_off"></a></li>
+                <li><a href="user/user_info.html" class="information_off"></a></li>
+                <li><a href="user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>
+        </div>-->
+        <div>
+        <ul class="layui-nav layui-bg-green">
+            <li class="layui-nav-item"><a href="index.html">首页</a></li>
+            <li class="layui-nav-item layui-this"><a href="role/role_list.html">角色管理</a></li>
+            <li class="layui-nav-item"><a href="admin/admin_list.html">管理员</a></li>
+            <li class="layui-nav-item">
+                <a href="fee/fee_list.html">资费管理</a>
+               <!-- <dl class="layui-nav-child">
+                    <dd><a href="">账务账号</a></dd>
+                    <dd><a href="">后台模版</a></dd>
+                    <dd><a href="">电商平台</a></dd>
+                </dl>-->
+            </li>
+            <li class="layui-nav-item"><a href="account/account_list.html">账务账号</a></li>
+            <li class="layui-nav-item"><a href="service/service_list.html">业务账号</a></li>
+            <li class="layui-nav-item"><a href="bill/bill_list.html">账单管理</a></li>
+            <li class="layui-nav-item"><a href="report/report_list.html">报表</a></li>
+            <li class="layui-nav-item"><a href="user/user_info.html">个人信息</a></li>
+            <li class="layui-nav-item"><a href="user/user_modi_pwd.html">修改密码</a></li>
+        </ul>
+        </div>
+        <script src="./static/layui/layui.js" charset="utf-8"></script>
+        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        <script>
+            layui.use('element', function(){
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+                //监听导航点击
+                element.on('nav(demo)', function(elem){
+                    //console.log(elem)
+                    layer.msg(elem.text());
+                });
+            });
+        </script>
+    </body>
+</html>

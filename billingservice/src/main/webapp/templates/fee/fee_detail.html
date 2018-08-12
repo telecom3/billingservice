@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>电信</title>
+    <link type="text/css" rel="stylesheet"href="../styles/index.css">
+    <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+</head>
+<body>
+<!--Logo区域开始-->
+<div id="header">
+    <img src="../../static/images/logo.png" alt="logo" class="left"/>
+    <a href="#">[退出]</a>
+</div>
+<!--Logo区域结束-->
+<!--导航区域开始-->
+<menu>
+    <label for="trigger">
+        <input id="trigger" type="checkbox" />
+        <section class="drawer-list">
+            <ul>
+                <li><a href="../testindex.html">主页</a></li>
+                <li><a href="../role/role_list.html">角色管理</a></li>
+                <li><a href="../admin/admin_list.html">管理员</a></li>
+                <li><a href="../fee/fee_list.html">资费管理</a></li>
+                <li><a href="../account/account_list.html">账务账号</a></li>
+                <li><a href="../service/service_list.html">业务账号</a></li>
+                <li><a href="../bill/bill_list.html">账单管理</a></li>
+                <li><a href="../report/report_list.html">报表</a></li>
+                <li><a href="../user/user_info.html">个人信息</a></li>
+                <li><a href="../user/user_modi_pwd.html">修改密码</a></li>
+
+            </ul>
+        </section>
+        <hamburger>
+            <i></i>
+            <text>
+                <close>close</close>
+                <open>菜单</open>
+            </text>
+        </hamburger>
+    </label>
+</menu>
+<!--导航区域结束-->
+<!--主要区域开始-->
+<div id="main">
+    <form action="" method="" class="main_form">
+        <div class="text_info clearfix"><span>资费ID：</span></div>
+        <div class="input_info"><input type="text" class="readonly" readonly value="1" /></div>
+        <div class="text_info clearfix"><span>资费名称：</span></div>
+        <div class="input_info"><input type="text" class="readonly" readonly value="包 20 小时"/></div>
+        <div class="text_info clearfix"><span>资费状态：</span></div>
+        <div class="input_info">
+            <select class="readonly" disabled>
+                <option>开通</option>
+                <option>暂停</option>
+                <option>删除</option>
+            </select>
+        </div>
+        <div class="text_info clearfix"><span>资费类型：</span></div>
+        <div class="input_info fee_type">
+            <input type="radio" name="radFeeType" id="monthly" disabled="disabled" />
+            <label for="monthly">包月</label>
+            <input type="radio" name="radFeeType" id="package" disabled="disabled" />
+            <label for="package">套餐</label>
+            <input type="radio" name="radFeeType" checked="checked" id="timeBased" disabled="disabled" />
+            <label for="timeBased">计时</label>
+        </div>
+        <div class="text_info clearfix"><span>基本时长：</span></div>
+        <div class="input_info">
+            <input type="text" class="readonly" readonly value="20"  />
+            <span>小时</span>
+        </div>
+        <div class="text_info clearfix"><span>基本费用：</span></div>
+        <div class="input_info">
+            <input type="text"  class="readonly" readonly value="24.5" />
+            <span>元</span>
+        </div>
+        <div class="text_info clearfix"><span>单位费用：</span></div>
+        <div class="input_info">
+            <input type="text"  class="readonly" readonly value="3.00" />
+            <span>元/小时</span>
+        </div>
+        <div class="text_info clearfix"><span>创建时间：</span></div>
+        <div class="input_info"><input type="text"  class="readonly" readonly value="2013/1/1 00:00:00" /></div>
+        <div class="text_info clearfix"><span>启动时间：</span></div>
+        <div class="input_info"><input type="text"  class="readonly" readonly value="2013/1/1 00:00:00" /></div>
+        <div class="text_info clearfix"><span>资费说明：</span></div>
+        <div class="input_info_high">
+            <textarea class="width300 height70 readonly" readonly>包 20 小时，20 小时以内 24.5 元，超出部分 3.00 元/小时</textarea>
+        </div>
+        <div class="button_info clearfix">
+            <input type="button" value="返回" class="btn_save" onclick="location.href='fee_list.html';" />
+        </div>
+    </form>
+</div>
+<!--主要区域结束-->
+<div id="footer">
+    <span>[源自全宇宙最帅组的技术，最优秀的小哥哥，最真实的企业环境，最适用的实战项目]</span>
+    <br />
+    <span>版权所有(C)全宇宙最帅组集团公司 </span>
+</div>
+</body>
+</html>

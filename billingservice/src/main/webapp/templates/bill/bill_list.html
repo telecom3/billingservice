@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>电信</title>
+    <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+    <link type="text/css" rel="stylesheet" href="../../static/layui/css/layui.css" media="all" />
+    <link type="text/css" rel="stylesheet"href="../styles/index.css">
+
+    <script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../static/layui/layui.js"></script>
+    <script language="javascript" type="text/javascript">
+        //写入下拉框中的年份和月份
+        function initialYearAndMonth()
+        //写入最近3年
+        {
+            var yearObj = document.getElementById("selYears");
+            var year = (new Date()).getFullYear();
+            for (var i = 0; i <= 2; i++) {
+                var opObj = new Option(year - i, year - i);
+                yearObj.options[i] = opObj;
+            }
+            //写入 12 月
+            var monthObj = document.getElementById("selMonths");
+            var opObj = new Option("全部", "全部");
+            monthObj.options[0] = opObj;
+            for (var i = 1; i <= 12; i++) {
+                var opObj = new Option(i, i);
+                monthObj.options[i] = opObj;
+            }
+        }
+    </script>
+    <style type="">
+        #main{
+            margin: auto;
+        }
+    </style>
+</head>
+<body onload="initialYearAndMonth();">
+<!--Logo区域开始-->
+<div id="header">
+    <img src="../../static/images/logo.png" alt="logo" class="left"/>
+    <a href="#">[退出]</a>
+</div>
+<!--Logo区域结束-->
+<!--导航区域开始-->
+<menu>
+    <label for="trigger">
+        <input id="trigger" type="checkbox" />
+        <section class="drawer-list">
+            <ul>
+                <li><a href="../testindex.html">主页</a></li>
+                <li><a href="../role/role_list.html">角色管理</a></li>
+                <li><a href="../admin/admin_list.html">管理员</a></li>
+                <li><a href="../fee/fee_list.html">资费管理</a></li>
+                <li><a href="../account/account_list.html">账务账号</a></li>
+                <li><a href="../service/service_list.html">业务账号</a></li>
+                <li><a href="../bill/bill_list.html">账单管理</a></li>
+                <li><a href="../report/report_list.html">报表</a></li>
+                <li><a href="../user/user_info.html">个人信息</a></li>
+                <li><a href="../user/user_modi_pwd.html">修改密码</a></li>
+
+            </ul>
+        </section>
+        <hamburger>
+            <i></i>
+            <text>
+                <close>close</close>
+                <open>菜单</open>
+            </text>
+        </hamburger>
+    </label>
+</menu>
+<!--导航区域结束-->
+<!--主要区域开始-->
+<div id="main">
+    <form action="" method="">
+        <!--查询-->
+        <div class="search_add">
+            <div>身份证：<input type="text"  value="230101111111111111" class="text_search" id="idReload" /></div>
+            <div>账务账号：<input type="text" value="admin1" class="width100 text_search" id="billReload" /></div>
+            <div>姓名：<input type="text" value="张三" class="width70 text_search" id="nameReload"/></div>
+            <div>
+                <select class="select_search" id="selYears">
+                </select>
+                年
+                <select class="select_search" id="selMonths">
+                </select>
+                月
+            </div>
+            <div><input type="button" value="搜索" class="btn_search" /></div>
+        </div>
+        <!--数据区域：用表格展示数据-->
+        <div id="data">
+            <table id="datalist">
+
+            </table>
+
+            <p>业务说明：<br />
+                1、设计支付方式和支付状态，为用户自服务中的支付功能预留；<br />
+                2、只查询近 3 年的账单，即当前年和前两年，如2013/2012/2011；<br />
+                3、年和月的数据由 js 代码自动生成；<br />
+                4、由数据库中的ｊｏｂ每月的月底定时计算账单数据。</p>
+        </div>
+        <!--分页-->
+        <div id="pages">
+            <a href="#">首页</a>
+            <a href="#">上一页</a>
+            <a href="#" class="current_page">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">下一页</a>
+            <a href="#">末页</a>
+        </div>
+    </form>
+</div>
+<!--主要区域结束-->
+<div id="footer">
+    <span>[源自全宇宙最帅组的技术，最优秀的小哥哥，最真实的企业环境，最适用的实战项目]</span>
+    <br />
+    <span>版权所有(C)全宇宙最帅组集团公司 </span>
+</div>
+</body>
+<script>
+    layui.use('table', function() {
+        var table = layui.table;
+
+        table.render({
+            elem: '#datalist'
+            , width: 900
+            , height: 400
+            , url: '/accountmag/main'
+            , page: true //开启分页
+            , limit: 10
+            , cols: [[ //表头
+                {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                , {field: 'accountName', title: '账务账号', width: 160, sort: true}
+                , {field: 'username', title: '服务器id', width: 160, sort: true, templet: '#birthday'}
+                , {field: 'createTime', title: '使用时长', width: 80, sort: true, templet: '#createTime'}
+                , {field: 'idCard', title: '备注', width: 160, sort: true, templet: '#updateTime'}
+                , {field: 'money', title: '日期', width: 120, sort: true,tmplet:'#money'}
+                , {fixed: 'right', width: 150, align: 'center', toolbar: '#barDemo'}
+
+
+            ]]
+        })
+
+        table.on('tool(demo)', function(obj) {
+            var data = obj.data;
+            if (obj.event === 'show1') {
+                layer.confirm('真的删除行么', function(index){
+                    window.location.href=""+Json.stringify(data.id)
+                })
+
+            }
+        })
+
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var reload1 = $('#billReload');
+                var reload2=$('#idReload');
+                var reload3=$('#nameReload');
+                var reload4=$('#selYears').text;
+                var reload5=$('#selMonths').text;
+                table.reload('datalist', {
+                    where: {
+                        billName:reload1.val(),
+                        idcard:reload2.val(),
+                        username:reload3.val(),
+                        year:reload4.val(),
+                        month:reload5.val()
+                    }
+                });
+            }
+        };
+
+    });
+</script>
+</html>

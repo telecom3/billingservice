@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>电信</title>
+        <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+        <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+        <script src="../static/layui/layui.js"></script>
+        <style>
+            .layui-form{
+                width: 450px;
+                height: 200px;
+            }
+           .layui-card{
+               margin-top: 5%;
+               margin-left: 30%;
+               opacity: 0.7;
+               width: 600px;
+               height: 400px;
+           }
+            .sj{
+                float: right;
+                line-height: 36px;
+            }
+
+        </style>
+    </head>
+    <body class="index">
+
+
+
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+
+            <div class="clear box layui-main login">
+
+                <br>
+                <div class="layui-col-md-offset3"><header class="layui-elip" >用户登录</header></div>
+                <br>
+
+                <form class="layui-form" action="billingservice/login" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="user.name" lay-verify="uname" required
+                                   placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div><br>
+
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码：</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="user.pwd" lay-verify="" required
+                                   placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div><br>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户权限：</label>
+                        <div class="layui-input-block">
+                            <input name="user" value="普通用户" title="普通用户" type="radio" checked=true>
+                            <div class="layui-unselect layui-form-radio  layui-form-radioed">
+                                <i class="layui-anim layui-icon layui-anim-scaleSpring">
+                                </i><div>普通用户</div></div>
+                            <input name="user" value="管理员" title="管理员" type="radio" >
+                            <div class="layui-unselect layui-form-radio">
+                                <i class="layui-anim layui-icon "></i><div>管理员</div></div>
+                            <a href="telLogin.html" class="sj">手机验证登录</a>
+                        </div>
+
+                    </div>
+                    <div class="layui-form-item layui-col-md-offset3">
+                        <label class="layui-form-label"></label>
+                        <!--<button class="layui-btn layui-btn-lg btn-center" type="submit">登录</button>-->
+                        <a class="layui-btn layui-btn-lg layui-btn-normal" href="testindex.html">确认登录</a>
+                    </div>
+
+
+                </form>
+
+    </div>
+        </div>
+    </div>
+
+    </body>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+</html>
