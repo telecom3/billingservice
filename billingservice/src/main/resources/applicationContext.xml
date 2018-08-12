@@ -32,9 +32,9 @@
 	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="url"
-			value="jdbc:mysql://192.168.43.212:3306/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
-		<property name="username" value="liu" />
-		<property name="password" value="1234" />
+			value="jdbc:mysql://127.0.0.1:3308/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
+		<property name="username" value="root" />
+		<property name="password" value="901011" />
 
 		<!-- 最大连接池数量 -->
 		<property name="maxActive" value="20" />
@@ -83,9 +83,9 @@
 	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="url"
-			value="jdbc:mysql://192.168.43.212:3307/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
-		<property name="username" value="liu" />
-		<property name="password" value="1234" />
+			value="jdbc:mysql://127.0.0.1:3309/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
+		<property name="username" value="root" />
+		<property name="password" value="901011" />
 
 		<!-- 最大连接池数量 -->
 		<property name="maxActive" value="20" />

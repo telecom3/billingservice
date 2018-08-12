@@ -1,45 +1,47 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>电信</title>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录日志</title>
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-    <link type="text/css" rel="stylesheet" href="../../static/layui/css/layui.css" media="all" />
-    <link type="text/css" rel="stylesheet"href="../styles/index1.css">
-
-    <script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../../static/layui/layui.js"></script>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+    <script src="../../static/layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css"href="../styles/index1.css"/>
+    <script src="../../static/layui/layui.js"></script>
     <script src="../../static/js/index.js"></script>
     <script language="javascript" type="text/javascript">
-        //写入下拉框中的年份和月份
-        function initialYearAndMonth()
-        //写入最近3年
-        {
-            var yearObj = document.getElementById("selYears");
-            var year = (new Date()).getFullYear();
-            for (var i = 0; i <= 2; i++) {
-                var opObj = new Option(year - i, year - i);
-                yearObj.options[i] = opObj;
-            }
-            //写入 12 月
-            var monthObj = document.getElementById("selMonths");
-            var opObj = new Option("全部", "全部");
-            monthObj.options[0] = opObj;
-            for (var i = 1; i <= 12; i++) {
-                var opObj = new Option(i, i);
-                monthObj.options[i] = opObj;
-            }
+        //删除
+        function deleteAccount() {
+            var r = window.confirm("确定要删除此账务账号吗？\r\n删除后将不能恢复，且会删除其下属的所有业务账号。");
+            document.getElementById("operate_result_info").style.display = "block";
+        }
+        //开通或暂停
+        function setState() {
+            var r = window.confirm("确定要开通此账务账号吗？");
+            document.getElementById("operate_result_info").style.display = "block";
         }
     </script>
-    <style type="">
+    <script>
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+    </script>
+    <style type="text/css">
         #main{
             margin: auto;
         }
     </style>
 </head>
-<body onload="initialYearAndMonth();">
-<!--Logo区域开始-->
+<body>
+
+
 <nav>
     <menu>
         <menuitem id="demo1">
@@ -79,7 +81,14 @@
                 <menuitem><a href="../bill/bill_list.html">账单查询</a></menuitem>
                 <menuitem><a href="../fee/fee_list.html">资费查询</a></menuitem>
                 <menuitem><a href="../admin/admin_list.html">管理员管理</a></menuitem>
-                <menuitem><a href="../user/user_info.html">个人信息</a></menuitem>
+                <menuitem>
+                    <a>用户自服务</a>
+                    <menu>
+                        <menuitem><a href="../bill/bill_list.html">账单查询</a></menuitem>
+                        <menuitem><a href="../user/user_info.html">个人信息</a></menuitem>
+                        <menuitem><a href="../fee/fee_list.html">资费明细</a></menuitem>
+                    </menu>
+                </menuitem>
                 <menuitem><a href="../user/user_modi_pwd.html">修改密码</a></menuitem>
 
 
@@ -91,10 +100,10 @@
     </menu>
 </nav>
 
-<!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
     <form action="" method="">
+
         <div class="layui-form">
             <table class="layui-table">
                 <colgroup>
@@ -105,67 +114,54 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>账单编号</th>
-                    <th>用户名</th>
-                    <th>身份证</th>
-                    <th>账务账号</th>
-                    <th>时间</th>
-                    <th>费用</th>
-                    <th>支付状态</th>
-                    <th>操作功能</th>
+                    <th>操作编号</th>
+                    <th>操作人</th>
+                    <th>操作时间</th>
+                    <th>操作模块</th>
+                    <th>操作数据</th>
+                    <th>操作方式</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
                     <td>贤心</td>
-                    <td>51012119990428157x</td>
-                    <td>123456</td>
-                    <td>1999-04-28</td>
-                    <td>99</td>
-                    <td>已支付</td>
-                    <td><button class="layui-btn layui-btn-primary">查看</button></td>
+                    <td>1989-10-14</td>
+                    <td>财务模块</td>
+                    <td>XX数据</td>
+                    <td>增加</td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>贤心</td>
-                    <td>51012119990428157x</td>
-                    <td>123456</td>
-                    <td>1999-04-28</td>
-                    <td>99</td>
-                    <td>已支付</td>
-                    <td><button class="layui-btn layui-btn-primary">查看</button></td>
+                    <td>1989-10-14</td>
+                    <td>财务模块</td>
+                    <td>XX数据</td>
+                    <td>增加</td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>贤心</td>
-                    <td>51012119990428157x</td>
-                    <td>123456</td>
-                    <td>1999-04-28</td>
-                    <td>99</td>
-                    <td>已支付</td>
-                    <td><button class="layui-btn layui-btn-primary">查看</button></td>
+                    <td>1989-10-14</td>
+                    <td>财务模块</td>
+                    <td>XX数据</td>
+                    <td>增加</td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>贤心</td>
-                    <td>51012119990428157x</td>
-                    <td>123456</td>
-                    <td>1999-04-28</td>
-                    <td>99</td>
-                    <td>已支付</td>
-                    <td><button class="layui-btn layui-btn-primary">查看</button></td>
+                    <td>1989-10-14</td>
+                    <td>财务模块</td>
+                    <td>XX数据</td>
+                    <td>增加</td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>贤心</td>
-                    <td>51012119990428157x</td>
-                    <td>123456</td>
-                    <td>1999-04-28</td>
-                    <td>99</td>
-                    <td>已支付</td>
-                    <td><button class="layui-btn layui-btn-primary">查看</button></td>
-
+                    <td>1989-10-14</td>
+                    <td>财务模块</td>
+                    <td>XX数据</td>
+                    <td>增加</td>
                 </tr>
                 </tbody>
             </table>
@@ -173,17 +169,17 @@
         <div id="test1" class="layui-col-md-offset3"></div>
 
     </form>
-    <a href="bill_zhifu.html"> <button class="layui-btn layui-btn-primary">支付</button></a>
 </div>
+
 <!--主要区域结束-->
 <div id="footer">
     <span>[源自全宇宙最帅组的技术，最优秀的小哥哥，最真实的企业环境，最适用的实战项目]</span>
     <br />
     <span>版权所有(C)全宇宙最帅组集团公司 </span>
 </div>
+
 </body>
 <script>
-
     layui.use('laypage', function(){
         var laypage = layui.laypage;
 

@@ -39,7 +39,9 @@ ul {
     text-align: center;
     padding: .25em;
 }
-
+menu{
+    z-index: 9999;
+}
 menu, menu label {
     position: absolute;
     top: 0;

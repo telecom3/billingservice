@@ -6,8 +6,9 @@
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
     <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
-    <link type="text/css" rel="stylesheet"href="../styles/index.css">
+    <link type="text/css" rel="stylesheet"href="../styles/index1.css">
     <script src="../../static/layui/layui.js"></script>
+    <script src="../../static/js/index.js"></script>
     <script src="../../static/js/jquery-3.3.1.min.js"></script>
     <script>
         layui.use('element', function(){
@@ -60,38 +61,57 @@
 <body>
 
 <!--导航区域开始-->
-<div id="header">
-    <img src="../../static/images/logo.png" alt="logo" class="left"/>
-    <a href="#">[退出]</a>
-</div>
+<<nav>
+    <menu>
+        <menuitem id="demo1">
+            <a>菜单</a>
+            <menu>
+                <menuitem><a href="../index.html">主页</a></menuitem>
+                <menuitem>
+                    <a href="../role/role_list.html">用户管理</a>
+                    <menu>
+                        <menuitem><a href="../account/account_list.html">账务账号管理</a></menuitem>
+                        <menuitem><a href="../service/service_list.html">业务账号管理</a></menuitem>
+                    </menu>
+                </menuitem>
+                <menuitem><a href="../report/report_list.html">报表查询</a></menuitem>
+                <menuitem id="demo2">
+                    <a>前台日志</a>
+                    <menu>
+                        <menuitem id="demo3">
+                            <a href="../login/login_rizi.html">登录日志</a>
+                            <!--  <menu>
+                                  <menuitem><a>deep 1</a></menuitem>
+                                  <menuitem><a>deep 2</a></menuitem>
+                                  <menuitem><a>deep 3</a></menuitem>
+                              </menu>-->
+                        </menuitem>
+                        <menuitem><a href="../login/login_caozuo.html">操作日志</a></menuitem>
+                    </menu>
+                </menuitem>
+                <menuitem>
+                    <a>权限管理</a>
+                    <menu>
+                        <menuitem><a href="../role/role_list.html">角色管理</a></menuitem>
+                        <menuitem><a href="../role/role_modi.html">权限管理</a></menuitem>
+                    </menu>
+                </menuitem>
+                <menuitem><a href="../account/account_list.html">账务查询</a></menuitem>
+                <menuitem><a href="../bill/bill_list.html">账单查询</a></menuitem>
+                <menuitem><a href="../fee/fee_list.html">资费查询</a></menuitem>
+                <menuitem><a href="../admin/admin_list.html">管理员管理</a></menuitem>
+                <menuitem><a href="../user/user_info.html">个人信息</a></menuitem>
+                <menuitem><a href="../user/user_modi_pwd.html">修改密码</a></menuitem>
 
-<menu>
-    <label for="trigger">
-        <input id="trigger" type="checkbox" />
-        <section class="drawer-list">
-            <ul>
-                <li><a href="../testindex.html">主页</a></li>
-                <li><a href="../role/role_list.html">角色管理</a></li>
-                <li><a href="../admin/admin_list.html">管理员</a></li>
-                <li><a href="../fee/fee_list.html">资费管理</a></li>
-                <li><a href="../account/account_list.html">账务账号</a></li>
-                <li><a href="../service/service_list.html">业务账号</a></li>
-                <li><a href="../bill/bill_list.html">账单管理</a></li>
-                <li><a href="../report/report_list.html">报表</a></li>
-                <li><a href="../user/user_info.html">个人信息</a></li>
-                <li><a href="../user/user_modi_pwd.html">修改密码</a></li>
 
-            </ul>
-        </section>
-        <hamburger>
-            <i></i>
-            <text>
-                <close>close</close>
-                <open>菜单</open>
-            </text>
-        </hamburger>
-    </label>
-</menu>
+            </menu>
+        </menuitem>
+
+
+        <!--   <menuitem><a>no drop</a></menuitem>-->
+    </menu>
+</nav>
+
 
 <!--导航区域结束-->
 <!--主要区域开始-->

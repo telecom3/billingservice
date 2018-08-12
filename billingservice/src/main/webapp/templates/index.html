@@ -5,58 +5,63 @@
         <title>电信</title>
         <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
-        <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
-        <script src="../static/layui/layui.js"></script>
-    </head>
-    <body class="index">
-        <!--导航区域开始-->
-       <!-- <div id="index_navi">
-            <ul id="menu">
-                <li><a href="index.html" class="index_on"></a></li>
-                <li><a href="role/role_list.html" class="role_off"></a></li>
-                <li><a href="admin/admin_list.html" class="admin_off"></a></li>
-                <li><a href="fee/fee_list.html" class="fee_off"></a></li>
-                <li><a href="account/account_list.html" class="account_off"></a></li>
-                <li><a href="service/service_list.html" class="service_off"></a></li>
-                <li><a href="bill/bill_list.html" class="bill_off"></a></li>
-                <li><a href="report/report_list.html" class="report_off"></a></li>
-                <li><a href="user/user_info.html" class="information_off"></a></li>
-                <li><a href="user/user_modi_pwd.html" class="password_off"></a></li>
-            </ul>
-        </div>-->
-        <div>
-        <ul class="layui-nav layui-bg-green">
-            <li class="layui-nav-item"><a href="index.html">首页</a></li>
-            <li class="layui-nav-item layui-this"><a href="role/role_list.html">角色管理</a></li>
-            <li class="layui-nav-item"><a href="admin/admin_list.html">管理员</a></li>
-            <li class="layui-nav-item">
-                <a href="fee/fee_list.html">资费管理</a>
-               <!-- <dl class="layui-nav-child">
-                    <dd><a href="">账务账号</a></dd>
-                    <dd><a href="">后台模版</a></dd>
-                    <dd><a href="">电商平台</a></dd>
-                </dl>-->
-            </li>
-            <li class="layui-nav-item"><a href="account/account_list.html">账务账号</a></li>
-            <li class="layui-nav-item"><a href="service/service_list.html">业务账号</a></li>
-            <li class="layui-nav-item"><a href="bill/bill_list.html">账单管理</a></li>
-            <li class="layui-nav-item"><a href="report/report_list.html">报表</a></li>
-            <li class="layui-nav-item"><a href="user/user_info.html">个人信息</a></li>
-            <li class="layui-nav-item"><a href="user/user_modi_pwd.html">修改密码</a></li>
-        </ul>
-        </div>
-        <script src="./static/layui/layui.js" charset="utf-8"></script>
-        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-        <script>
-            layui.use('element', function(){
-                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
-                //监听导航点击
-                element.on('nav(demo)', function(elem){
-                    //console.log(elem)
-                    layer.msg(elem.text());
-                });
-            });
-        </script>
+        <link rel="stylesheet" type="text/css"href="styles/index1.css"/>
+        <script src="static/js/index.js"></script>
+    </head>
+    <body>
+    <!--<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">-->
+    <nav>
+        <menu>
+            <menuitem id="demo1">
+                <a>菜单</a>
+                <menu>
+                    <menuitem><a href="index.html">主页</a></menuitem>
+                    <menuitem>
+                        <a href="role/role_list.html">用户管理</a>
+                        <menu>
+                            <menuitem><a href="account/account_list.html">账务账号管理</a></menuitem>
+                            <menuitem><a href="service/service_list.html">业务账号管理</a></menuitem>
+                        </menu>
+                    </menuitem>
+                    <menuitem><a href="report/report_list.html">报表查询</a></menuitem>
+                    <menuitem id="demo2">
+                        <a>前台日志</a>
+                        <menu>
+                            <menuitem id="demo3">
+                                <a href="login/login_rizi.html">登录日志</a>
+                              <!--  <menu>
+                                    <menuitem><a>deep 1</a></menuitem>
+                                    <menuitem><a>deep 2</a></menuitem>
+                                    <menuitem><a>deep 3</a></menuitem>
+                                </menu>-->
+                            </menuitem>
+                            <menuitem><a href="login/login_caozuo.html">操作日志</a></menuitem>
+                        </menu>
+                    </menuitem>
+                    <menuitem>
+                        <a>权限管理</a>
+                        <menu>
+                            <menuitem><a href="role/role_list.html">角色管理</a></menuitem>
+                            <menuitem><a href="role/role_modi.html">权限管理</a></menuitem>
+                        </menu>
+                    </menuitem>
+                    <menuitem><a href="account/account_list.html">账务查询</a></menuitem>
+                    <menuitem><a href="bill/bill_list.html">账单查询</a></menuitem>
+                    <menuitem><a href="fee/fee_list.html">资费查询</a></menuitem>
+                    <menuitem><a href="admin/admin_list.html">管理员管理</a></menuitem>
+                    <menuitem><a href="user/user_info.html">个人信息</a></menuitem>
+                    <menuitem><a href="user/user_modi_pwd.html">修改密码</a></menuitem>
+
+
+                </menu>
+            </menuitem>
+
+
+         <!--   <menuitem><a>no drop</a></menuitem>-->
+        </menu>
+    </nav>
+
+
     </body>
 </html>
