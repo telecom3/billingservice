@@ -22,6 +22,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 业务账号实体类
  * @author wzc
@@ -54,10 +56,12 @@ public class BusinessInfoBean implements Serializable{
 	@Column(name="business_state")
 	private int businessState;
 	/**业务帐号创建时间*/
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd ")
 	@Column(name="create_time")
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date createTime;
 	/**业务帐号修改时间*/
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd ")
 	@Column(name="update_time")
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date updateTime;
