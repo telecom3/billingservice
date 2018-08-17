@@ -44,12 +44,15 @@ public class RoleInfoBean implements Serializable{
 	/**角色类型(0-超级管理员,1-普通管理员,2-用户)*/
 	@Column(name="role_type")
 	private int roleType;
+	
 	/**权限集合*/
 	@ManyToMany(fetch=FetchType.LAZY)
-	@Cascade(value = { CascadeType.REFRESH,CascadeType.SAVE_UPDATE })
-	@JoinTable(name="t_role_authority_info",joinColumns=@JoinColumn(name="fk_role_id"),
+	@Cascade(value = { CascadeType.SAVE_UPDATE,CascadeType.REFRESH})
+	@JoinTable(name="t_role_authority_info",
+	joinColumns=@JoinColumn(name="fk_role_id"),
 	inverseJoinColumns=@JoinColumn(name="fk_authority_id"))
 	private Set<AuthorityInfoBean> authorityInfos;
+	
 	public RoleInfoBean() {
 		super();
 		// TODO Auto-generated constructor stub

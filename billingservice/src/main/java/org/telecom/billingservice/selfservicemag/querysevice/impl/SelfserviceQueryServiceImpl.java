@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.telecom.billingservice.annotation.DataSource;
 import org.telecom.billingservice.bean.BillMonthBean;
 import org.telecom.billingservice.bean.BusinessDayBean;
 import org.telecom.billingservice.bean.BusinessMonthBean;
@@ -28,43 +29,46 @@ public class SelfserviceQueryServiceImpl implements ISelfserviceQueryService{
 		// TODO Auto-generated method stub
 		return selfserviceQueryDaoImpl.findUserInfoBeanById(userInfoId);
 	}
+	@DataSource(value="read")
 	@Override
 	public PagerBean listBillMonthBeanBy2Params(PagerBean page, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		int totalRows=selfserviceQueryDaoImpl.countBillMonthByParams(params);
 		if(totalRows > 0) {
 			params.put("index", page.getIndex());
-			params.put("rows", page.getLimit());
+			params.put("limit", page.getLimit());
 			//分页数据查询
-			List<BillMonthBean> datas = selfserviceQueryDaoImpl.listBillMonthBeanBy2Params(page, params);
+			List<BillMonthBean> datas = selfserviceQueryDaoImpl.listBillMonthBeanBy2Params(params);
 			page.setCount(totalRows);
 			page.setData(datas);
 		}
 		return page;
 	}
+	@DataSource(value="read")
 	@Override
 	public PagerBean listBusinessMonthBeanBy2Params(PagerBean page, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		int totalRows=selfserviceQueryDaoImpl.countBillMonthByParams(params);
 		if(totalRows > 0) {
 			params.put("index", page.getIndex());
-			params.put("rows", page.getLimit());
+			params.put("limit", page.getLimit());
 			//分页数据查询
-			List<BusinessMonthBean> datas = selfserviceQueryDaoImpl.listBusinessMonthBeanBy2Params(page, params);
+			List<BusinessMonthBean> datas = selfserviceQueryDaoImpl.listBusinessMonthBeanBy2Params(params);
 			page.setCount(totalRows);
 			page.setData(datas);
 		}
 		return page;
 	}
+	@DataSource(value="read")
 	@Override
 	public PagerBean listBusinessDayBeanBy2Params(PagerBean page, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		int totalRows=selfserviceQueryDaoImpl.countBusinessDayByParams(params);
 		if(totalRows > 0) {
 			params.put("index", page.getIndex());
-			params.put("rows", page.getLimit());
+			params.put("limit", page.getLimit());
 			//分页数据查询
-			List<BusinessDayBean> datas = selfserviceQueryDaoImpl.listBusinessDayBeanBy2Params(page, params);
+			List<BusinessDayBean> datas = selfserviceQueryDaoImpl.listBusinessDayBeanBy2Params(params);
 			page.setCount(totalRows);
 			page.setData(datas);
 		}

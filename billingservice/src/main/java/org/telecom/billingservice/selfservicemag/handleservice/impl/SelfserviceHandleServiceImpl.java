@@ -3,6 +3,7 @@ package org.telecom.billingservice.selfservicemag.handleservice.impl;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.telecom.billingservice.annotation.DataSource;
 import org.telecom.billingservice.bean.UserInfoBean;
 import org.telecom.billingservice.selfservicemag.handledao.ISelfserviceHandleDao;
 import org.telecom.billingservice.selfservicemag.handleservice.ISelfserviceHandleService;
@@ -15,6 +16,7 @@ import org.telecom.billingservice.selfservicemag.handleservice.ISelfserviceHandl
 public class SelfserviceHandleServiceImpl implements ISelfserviceHandleService{
     @Resource
 	private ISelfserviceHandleDao selfserviceHandleDaoImpl;
+    @DataSource(value="write")
 	@Override
 	public void updateSelfInfo(UserInfoBean userInfo) {
 		// TODO Auto-generated method stub

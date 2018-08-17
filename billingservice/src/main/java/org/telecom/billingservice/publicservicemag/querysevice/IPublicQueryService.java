@@ -18,9 +18,9 @@ public interface IPublicQueryService {
 UserInfoBean findUserInfoBeanById(Long userInfoId);
 /**
  * 用户登录业务
- * @param userInfo  用户实体
+ * @param userName  用户名
  * @return  用户实体
  */
-UserInfoBean  login(UserInfoBean userInfo);
+UserInfoBean  login(String userName);
 
 }

@@ -1,6 +1,7 @@
 package org.telecom.authoritymag.test;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -52,6 +53,12 @@ public class AuthorityQueryServiceImplTest {
 	public void findAllAuthorityInfoBean() {
 		List<AuthorityInfoBean> list =authorityQueryServiceImpl.findAllAuthorityInfoBean();
 		System.out.println(list);
+	}
+	@Test
+	public void listAuthorityInfoBeanById() {
+		Set<AuthorityInfoBean> set =authorityQueryServiceImpl.listAuthorityInfoBeanById(3L);
+		System.out.println(set);
+		System.out.println("长度："+set.size());
 	}
 
 }

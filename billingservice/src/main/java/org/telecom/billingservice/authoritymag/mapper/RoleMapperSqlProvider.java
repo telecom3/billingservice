@@ -55,7 +55,7 @@ public class RoleMapperSqlProvider {
 	public String commonSQL(Map params) {
 		StringBuilder str = new StringBuilder();
 		str.append("where 1=1 ");
-		if(params.get("roleName")!=null||!StringUtils.isEmpty(params.get("roleName")+"")) {
+		if(params.get("roleName")!=null&&!StringUtils.isEmpty(params.get("roleName")+"")) {
 			str.append("and role_name like concat('"+params.get("roleName")+"','%') ");
 		}
 		return str.toString();

@@ -16,7 +16,7 @@ public class SelfserviceMapperSqlProvider {
 		Map params = (Map) param.get("params");
 		StringBuilder str = new StringBuilder();
 		if(params!=null) {
-			str.append("select * from t_bill_month "+commonSQL(params));
+			str.append("select * from t_bill_month "+commonSQL(param));
 			str.append(" limit "+params.get("index")+","+params.get("limit"));
 		}
 		return str.toString();
@@ -48,9 +48,10 @@ public class SelfserviceMapperSqlProvider {
 	public String commonSQL(Map params) {
 		StringBuilder str = new StringBuilder();
 		str.append("where 1=1 ");
+		
 		//判断客户名是否为null拼接sql语句
-		if(params.get("businessMonth")!=null) {
-			str.append("and business_month like concat('"+params.get("businessMonth")+"','%') ");
+		if(StringUtils.isEmpty(params.toString())) {
+			str.append("and business_monrth like concat('"+params.get("businessMonrth")+"','%') ");
 		}
 		if(params.get("businessDay")!=null) {
 			str.append("and business_day like concat('"+params.get("businessDay")+"','%') ");

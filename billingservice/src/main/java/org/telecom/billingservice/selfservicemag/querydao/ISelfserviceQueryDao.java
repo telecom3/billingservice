@@ -45,21 +45,21 @@ int countBillMonthByParams(Map params);
  * @param params  动态条件参数
  * @return  分页
  */
-List<BillMonthBean> listBillMonthBeanBy2Params(PagerBean page,Map<String,Object> params);
+List<BillMonthBean> listBillMonthBeanBy2Params(Map<String,Object> params);
 /**
  * 账务账号下所有业务账号当月发生的费用明细信息分页
  * @param page   分页实体
  * @param params  动态条件参数
  * @return  分页
  */
-List<BusinessMonthBean> listBusinessMonthBeanBy2Params(PagerBean page,Map<String,Object> params);
+List<BusinessMonthBean> listBusinessMonthBeanBy2Params(Map<String,Object> params);
 /**
  * 账务账号下单个业务账号每日发生的费用明细信息分页
  * @param page   分页实体
  * @param params  动态条件参数
  * @return  分页
  */
-List<BusinessDayBean> listBusinessDayBeanBy2Params(PagerBean page,Map<String,Object> params);
+List<BusinessDayBean> listBusinessDayBeanBy2Params(Map<String,Object> params);
 
 
 }

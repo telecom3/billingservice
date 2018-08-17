@@ -22,7 +22,7 @@ public @interface MyLog {
 	 * 代表模块名称
 	 * @return 
 	 */
-	String menuName() default "";
+	int menuName() default -1;
 	
 	/**
 	 * operateType 代表操作类型

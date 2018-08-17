@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @Entity
-@Table(name="t_business_monrh")
+@Table(name="t_business_day")
 public class BusinessDayBean implements Serializable{
 	/**
 	 * 

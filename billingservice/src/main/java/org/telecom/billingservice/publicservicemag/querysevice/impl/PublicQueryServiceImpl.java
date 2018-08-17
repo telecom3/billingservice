@@ -21,9 +21,9 @@ public class PublicQueryServiceImpl implements IPublicQueryService{
 		return publicQueryDaoImpl.findUserInfoBeanById(userInfoId);
 	}
 	@Override
-	public UserInfoBean login(UserInfoBean userInfo) {
+	public UserInfoBean login(String userName) {
 		// TODO Auto-generated method stub
-		return publicQueryDaoImpl.login(userInfo);
+		return publicQueryDaoImpl.login(userName);
 	}
 
 

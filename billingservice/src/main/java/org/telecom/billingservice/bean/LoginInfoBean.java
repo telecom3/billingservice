@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,6 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author wzc
  *
  */
+@XmlRootElement 
 @Entity
 @Table(name="t_login_info")
 public class LoginInfoBean implements Serializable{

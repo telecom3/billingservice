@@ -2,7 +2,9 @@ package org.telecom.billingservice.authoritymag.mapper;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -15,6 +17,8 @@ import org.telecom.billingservice.bean.RoleInfoBean;
  *
  */
 public interface RoleMapper {
+	
+	
 
 	/**
 	 * 按多条件统计条数
@@ -32,7 +36,9 @@ public interface RoleMapper {
 		@Result(id=true,property="id",column="id",javaType=long.class),
 		@Result(property="roleName", column="role_name",javaType=String.class),
 		@Result(property="roleType", column="role_type",javaType=int.class),
-		@Result(property="roleDescribe", column="role_describe",javaType=String.class)
+		@Result(property="roleDescribe", column="role_describe",javaType=String.class),
+		@Result(property="authorityInfos",javaType=Set.class,column="id",many=@Many
+		(select="org.telecom.billingservice.authoritymag.mapper.AuthorityQueryMapper.listAuthorityInfoBeanById"))
 	})
 	@SelectProvider(method = "listRoleByParams", type = RoleMapperSqlProvider.class)
 	List<RoleInfoBean> listRoleInfoByParams(@Param("params")Map params);
@@ -45,8 +51,26 @@ public interface RoleMapper {
 		@Result(id=true,property="id",column="id",javaType=long.class),
 		@Result(property="roleName", column="role_name",javaType=String.class),
 		@Result(property="roleType", column="role_type",javaType=int.class),
-		@Result(property="roleDescribe", column="role_describe",javaType=String.class)
+		@Result(property="roleDescribe", column="role_describe",javaType=String.class),
+		@Result(property="authorityInfos",javaType=Set.class,column="id",many=@Many
+		(select="org.telecom.billingservice.authoritymag.mapper.AuthorityQueryMapper.listAuthorityInfoBeanById"))
+		
 	})
 	@Select("select id,role_name,role_type,role_describe from t_role_info where id=#{id}")
 	RoleInfoBean findRoleInfoBeanById(long id);
+	/**
+	 * 查询所有角色
+	 * @return 角色集合
+	 */
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=long.class),
+		@Result(property="roleName", column="role_name",javaType=String.class),
+		@Result(property="roleType", column="role_type",javaType=int.class),
+		@Result(property="roleDescribe", column="role_describe",javaType=String.class),
+		@Result(property="authorityInfos",javaType=Set.class,column="id",many=@Many
+		(select="org.telecom.billingservice.authoritymag.mapper.AuthorityQueryMapper.listAuthorityInfoBeanById"))
+		
+	})
+	@Select("select id,role_name,role_type,role_describe from t_role_info ")
+	List<RoleInfoBean> listRoleInfoAll();
 }

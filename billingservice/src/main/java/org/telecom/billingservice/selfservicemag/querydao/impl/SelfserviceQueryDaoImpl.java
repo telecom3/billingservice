@@ -11,7 +11,9 @@ import org.telecom.billingservice.bean.BusinessDayBean;
 import org.telecom.billingservice.bean.BusinessMonthBean;
 import org.telecom.billingservice.bean.PagerBean;
 import org.telecom.billingservice.bean.UserInfoBean;
-import org.telecom.billingservice.selfservicemag.mapper.SelfserviceMapper;
+import org.telecom.billingservice.selfservicemag.mapper.BillMonthMapper;
+import org.telecom.billingservice.selfservicemag.mapper.BusinessDayMapper;
+import org.telecom.billingservice.selfservicemag.mapper.BusinessMonthMapper;
 import org.telecom.billingservice.selfservicemag.querydao.ISelfserviceQueryDao;
 /**
  * 持久层用户自服务查询接口实现类
@@ -20,42 +22,47 @@ import org.telecom.billingservice.selfservicemag.querydao.ISelfserviceQueryDao;
  */
 @Repository
 public class SelfserviceQueryDaoImpl implements ISelfserviceQueryDao{
+
     @Resource
-	private SelfserviceMapper selfserviceMapper;
+    private BillMonthMapper billMonthMapper;
+    @Resource
+    private BusinessDayMapper businessDayMapper;
+    @Resource
+    private BusinessMonthMapper businessMonthMapper;
 	@Override
 	public UserInfoBean findUserInfoBeanById(Long userInfoId) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.findUserInfoBeanById(userInfoId);
+		return billMonthMapper.findUserInfoBeanById(userInfoId);
 	}
 	@Override
 	public int countBusinessDayByParams(Map params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.countBusinessDayByParams(params);
+		return businessDayMapper.countBusinessDayByParams(params);
 	}
 	@Override
 	public int countBusinessMonthByParams(Map params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.countBusinessMonthByParams(params);
+		return businessMonthMapper.countBusinessMonthByParams(params);
 	}
 	@Override
 	public int countBillMonthByParams(Map params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.countBillMonthByParams(params);
+		return billMonthMapper.countBillMonthByParams(params);
 	}
 	@Override
-	public List<BillMonthBean> listBillMonthBeanBy2Params(PagerBean page, Map<String, Object> params) {
+	public List<BillMonthBean> listBillMonthBeanBy2Params(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.listBillMonthBeanBy2Params(page, params);
+		return billMonthMapper.listBillMonthBeanBy2Params(params);
 	}
 	@Override
-	public List<BusinessMonthBean> listBusinessMonthBeanBy2Params(PagerBean page, Map<String, Object> params) {
+	public List<BusinessMonthBean> listBusinessMonthBeanBy2Params(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.listBusinessMonthBeanBy2Params(page, params);
+		return businessMonthMapper.listBusinessMonthBeanBy2Params( params);
 	}
 	@Override
-	public List<BusinessDayBean> listBusinessDayBeanBy2Params(PagerBean page, Map<String, Object> params) {
+	public List<BusinessDayBean> listBusinessDayBeanBy2Params(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return selfserviceMapper.listBusinessDayBeanBy2Params(page, params);
+		return businessDayMapper.listBusinessDayBeanBy2Params(params);
 	}
 
 

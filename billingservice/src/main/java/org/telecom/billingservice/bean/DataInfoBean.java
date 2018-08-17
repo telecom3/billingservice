@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,6 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author wzc
  *
  */
+@XmlRootElement 
 @Entity
 @Table(name="t_data_info")
 public class DataInfoBean implements Serializable{

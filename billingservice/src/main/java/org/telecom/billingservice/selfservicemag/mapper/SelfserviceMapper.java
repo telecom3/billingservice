@@ -30,7 +30,7 @@ public interface SelfserviceMapper {
 		@Result(property="userName", column="user_name",javaType=String.class),
 		@Result(property="userPwd", column="user_pwd",javaType=String.class),
 		@Result(property="userGender", column="user_gender",javaType=Integer.class),
-		@Result(property="userReallName", column="user_reallName",javaType=String.class),
+		@Result(property="userReallName", column="user_reall_name",javaType=String.class),
 		@Result(property="userEmail", column="user_email",javaType=String.class),
 		@Result(property="userID", column="user_ID",javaType=String.class),
 		@Result(property="userAdress", column="user_adress",javaType=String.class),
@@ -80,7 +80,7 @@ public interface SelfserviceMapper {
 		@Result(property="businessMonth", column="business_month",javaType=String.class),
 	})
 	@SelectProvider(type=SelfserviceMapperSqlProvider.class,method="listBillMonthBeanBy2Params")
-	List<BillMonthBean> listBillMonthBeanBy2Params(@Param("params")PagerBean page,Map<String,Object> params);
+	List<BillMonthBean> listBillMonthBeanBy2Params(@Param("params")Map<String,Object> params);
 	/**
 	 * 账务账号下所有业务账号当月发生的费用明细信息分页
 	 * @param page   分页实体
@@ -93,12 +93,12 @@ public interface SelfserviceMapper {
 		@Result(property="userName", column="user_name",javaType=String.class),
 		@Result(property="osTime", column="os_time",javaType=Long.class),
 		@Result(property="osCost", column="os_cost",javaType=Double.class),
-		@Result(property="businessMonth", column="business_month",javaType=String.class),
+		@Result(property="businessMonrth", column="business_monrth",javaType=String.class),
 		@Result(property="businessYear", column="business_year",javaType=String.class),
 		@Result(property="tariffName", column="tariff_name",javaType=String.class),
 	})
 	@SelectProvider(type=SelfserviceMapperSqlProvider.class,method="listBusinessMonthBeanBy2Params")
-	List<BusinessMonthBean> listBusinessMonthBeanBy2Params(@Param("params")PagerBean page,Map<String,Object> params);
+	List<BusinessMonthBean> listBusinessMonthBeanBy2Params(@Param("params")Map<String,Object> params);
 	/**
 	 * 账务账号下单个业务账号每日发生的费用明细信息分页
 	 * @param page   分页实体
@@ -116,7 +116,7 @@ public interface SelfserviceMapper {
 		@Result(property="tariffName", column="tariff_name",javaType=String.class),
 	})
 	@SelectProvider(type=SelfserviceMapperSqlProvider.class,method="listBusinessDayBeanBy2Params")
-	List<BusinessDayBean> listBusinessDayBeanBy2Params(@Param("param")PagerBean page,Map<String,Object> params);
+	List<BusinessDayBean> listBusinessDayBeanBy2Params(Map<String,Object> params);
 
 
 	}

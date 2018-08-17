@@ -33,11 +33,11 @@ public class SelfserviceTest {
     public void listBillMonthBeanBy2Params(){
     	PagerBean page = new PagerBean(1, 2);
 		Map<String, Object> params = new HashMap<String,Object>();
-		
+		params.put("id", 1L);
 		params.put("businessMonth", "3");
 		
 		page = selfserviceQueryServiceImpl.listBillMonthBeanBy2Params(page, params);
-		
+		System.out.println(page);
     } 
     @Test
     public void listBusinessMonthBeanBy2Params() {

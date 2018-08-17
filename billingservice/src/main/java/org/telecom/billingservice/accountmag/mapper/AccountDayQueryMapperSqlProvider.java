@@ -58,7 +58,7 @@ public class AccountDayQueryMapperSqlProvider {
 		str.append("where 1=1 ");
 		
 		Object userName = param.get("userName");
-		Object osName = param.get("osName");
+		Object serviceIp = param.get("serviceIp");
 		Object accountYear = param.get("accountYear");
 		Object accountMonth = param.get("accountMonth");
 		
@@ -66,8 +66,8 @@ public class AccountDayQueryMapperSqlProvider {
 		if(userName!=null && !StringUtils.isEmpty(userName.toString())) {
 			str.append("and user_name ='"+userName+"' ");
 		}
-		if(osName!=null && !StringUtils.isEmpty(osName.toString())) {
-			str.append("and os_name ='"+osName+"' ");
+		if(serviceIp!=null && !StringUtils.isEmpty(serviceIp.toString())) {
+			str.append("and service_ip ='"+serviceIp+"' ");
 		}
 		if(accountYear!=null && !StringUtils.isEmpty(accountYear.toString())) {
 			str.append("and account_year = '"+accountYear+"' ");

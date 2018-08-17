@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -23,11 +24,14 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 用户实体类
  * @author wzc
  *
  */
+@XmlRootElement
 @Entity
 @Table(name="t_user_info")
 @OptimisticLocking(type=OptimisticLockType.VERSION)
@@ -52,7 +56,7 @@ public class UserInfoBean implements Serializable{
 	@Column(name="user_gender")
 	private int userGender;
 	/**用户真实姓名*/
-	@Column(name="user_reallName",length=20)
+	@Column(name="user_reall_name",length=20)
 	private String userReallName;
 	/**用户邮箱*/
 	@Column(name="user_email",length=20)
@@ -75,6 +79,7 @@ public class UserInfoBean implements Serializable{
 	/**用户创建时间*/
 	@Column(name="create_time")
 	@Temporal(value = TemporalType.TIMESTAMP)
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy年MM月dd日 ")
 	private Date createTime;
 	/**用户修改时间*/
 	@Column(name="update_time")
@@ -104,6 +109,13 @@ public class UserInfoBean implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UserInfoBean(String userName, String userPwd) {
+		super();
+		this.userName = userName;
+		this.userPwd = userPwd;
+	}
+
 	public long getId() {
 		return id;
 	}

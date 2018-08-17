@@ -23,9 +23,6 @@
 	<!-- 开启springmvc框架的注解支持 -->
 	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 
-	<!-- 指定静态资源路径 -->
-	<!-- <mvc:resources location="/static/" mapping="/static/**"></mvc:resources> -->
-
 	<!-- 定义spring框架提供的转换工厂，并向转换工厂中，注册转换服务 -->
 	<bean id="conversionService"
 		class="org.springframework.context.support.ConversionServiceFactoryBean">
@@ -59,4 +56,9 @@
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
+	<mvc:view-controller path="/" view-name="forward:/templates/login.jsp" />
+	
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
 </beans>

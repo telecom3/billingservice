@@ -32,4 +32,9 @@ public interface IRoleQueryDao {
 	 * @return 角色对象
 	 */
 	RoleInfoBean findRoleInfoBeanById(long id);
+	/**
+	 * 查询所有角色
+	 * @return 角色集合
+	 */
+	List<RoleInfoBean> listRoleInfoAll();
 }

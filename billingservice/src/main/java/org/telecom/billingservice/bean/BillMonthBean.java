@@ -1,5 +1,7 @@
 package org.telecom.billingservice.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,14 +14,21 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 账单月费实体类
  * @author wzc
  *
  */
+
 @Entity
-@Table(name="t_business_monrh")
-public class BillMonthBean {
+@Table(name="t_bill_month")
+public class BillMonthBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**账单月费ID*/
 	@Id
 	@Column(name="id")
@@ -90,6 +99,12 @@ public class BillMonthBean {
 		this.businessYear = businessYear;
 	}
 	
+	public String getBusinessMonth() {
+		return businessMonth;
+	}
+	public void setBusinessMonth(String businessMonth) {
+		this.businessMonth = businessMonth;
+	}
 	public UserInfoBean getUserInfo() {
 		return userInfo;
 	}

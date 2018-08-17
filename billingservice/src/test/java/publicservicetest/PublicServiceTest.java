@@ -28,16 +28,13 @@ public class PublicServiceTest {
    
    @Test
    public void login() {
-	   UserInfoBean userInfo = new UserInfoBean();
-	   userInfo.setUserName("zhangsan");
-	   userInfo.setUserPwd(Integer.toString(123));
-	   UserInfoBean user= publicQueryServiceImpl.login(userInfo);
+	   UserInfoBean user= publicQueryServiceImpl.login("liu");
 	   System.out.println(user);
 	   
    }
    @Test
    public void updateUserPassword() {
-	   UserInfoBean userInfo =publicQueryServiceImpl.findUserInfoBeanById(2L);
+	   UserInfoBean userInfo =publicQueryServiceImpl.findUserInfoBeanById(4L);
 	   userInfo.setUserPwd(Integer.toString(1234));
 	  publicHandleServiceImpl.updateUserPassword(userInfo);
 	  System.out.println(userInfo);

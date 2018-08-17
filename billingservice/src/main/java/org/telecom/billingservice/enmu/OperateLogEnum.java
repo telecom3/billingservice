@@ -8,9 +8,9 @@ public enum OperateLogEnum {
 	/**
 	 * SAVE值为0:保存
 	 * UPDATE值为1:修改
-	 * DALETE值为2:删除
+	 * DELETE值为2:删除
 	 */
-	SAVE(0),UPDATE(1),DALETE(2);
+	SAVE(0),UPDATE(1),DELETE(2);
 	/** 类型对应数*/
 	private int type;
 	

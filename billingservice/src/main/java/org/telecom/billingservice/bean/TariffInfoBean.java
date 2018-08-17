@@ -5,20 +5,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 资费实体类
@@ -28,6 +27,7 @@ import org.hibernate.annotations.OptimisticLocking;
 @Entity
 @Table(name="t_tariff_info")
 @OptimisticLocking(type=OptimisticLockType.VERSION)
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class TariffInfoBean implements Serializable{
 	/**
 	 * 
@@ -59,8 +59,10 @@ public class TariffInfoBean implements Serializable{
 	private double unitCost;
 	/**资费描述*/
 	@Column(name="cost_describle",length=50)
+	
 	private String costDescrible;
 	/**资费开通时间*/
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd ")
 	@Column(name="strat_time")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date stratTime;
@@ -72,10 +74,6 @@ public class TariffInfoBean implements Serializable{
 	@Column(name="update_time")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date updateTime;
-	/**业务账号对象*/
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="tariffInfo")
-	@Cascade(value = { CascadeType.REFRESH,CascadeType.SAVE_UPDATE })
-	private BusinessInfoBean businessInfo;
 	/**版本*/
 	@Version
 	private int version;
@@ -149,26 +147,34 @@ public class TariffInfoBean implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	public BusinessInfoBean getBusinessInfo() {
+	/*public BusinessInfoBean getBusinessInfo() {
 		return businessInfo;
 	}
 	public void setBusinessInfo(BusinessInfoBean businessInfo) {
 		this.businessInfo = businessInfo;
-	}
+	}*/
 	public int getVersion() {
 		return version;
 	}
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	@Override
+	/*@Override
 	public String toString() {
 		return "TariffInfoBean [id=" + id + ", tariffState=" + tariffState + ", tariffName=" + tariffName
 				+ ", tariffType=" + tariffType + ", baseTime=" + baseTime + ", baseCost=" + baseCost + ", unitCost="
 				+ unitCost + ", costDescrible=" + costDescrible + ", stratTime=" + stratTime + ", createTime="
 				+ createTime + ", updateTime=" + updateTime + ", businessInfo=" + businessInfo + ", version=" + version
 				+ "]";
+	}*/
+	@Override
+	public String toString() {
+		return "TariffInfoBean [id=" + id + ", tariffState=" + tariffState + ", tariffName=" + tariffName
+				+ ", tariffType=" + tariffType + ", baseTime=" + baseTime + ", baseCost=" + baseCost + ", unitCost="
+				+ unitCost + ", costDescrible=" + costDescrible + ", stratTime=" + stratTime + ", createTime="
+				+ createTime + ", updateTime=" + updateTime + ", version=" + version + "]";
 	}
+	
 	
 	
 }

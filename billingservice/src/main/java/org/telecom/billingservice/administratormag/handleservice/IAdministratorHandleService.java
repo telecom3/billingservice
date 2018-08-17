@@ -24,4 +24,5 @@ void updateAdministrator(UserInfoBean user);
  * @param user  账务账号实体
  */
 void deleteAdministrator(Long userId);
+
 }

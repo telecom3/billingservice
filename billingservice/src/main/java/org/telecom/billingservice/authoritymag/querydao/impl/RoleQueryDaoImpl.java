@@ -37,4 +37,10 @@ public class RoleQueryDaoImpl implements IRoleQueryDao{
 		return roleMapper.findRoleInfoBeanById(id);
 	}
 
+	@Override
+	public List<RoleInfoBean> listRoleInfoAll() {
+		// TODO Auto-generated method stub
+		return roleMapper.listRoleInfoAll();
+	}
+
 }

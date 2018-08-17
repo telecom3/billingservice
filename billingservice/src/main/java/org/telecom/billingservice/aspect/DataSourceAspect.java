@@ -14,7 +14,7 @@ import org.telecom.billingservice.util.HandleDataSource;
 @Aspect  
 @Component  
 public class DataSourceAspect {  
-    @Pointcut("execution(* org.telecom.billingservice.service.*.*(..))")    
+    @Pointcut("execution(* org.telecom.billingservice.*mag.*service.*.*(..))")    
     public void pointCut(){};    
       
     @Before(value = "pointCut()")  

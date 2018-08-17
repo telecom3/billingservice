@@ -1,6 +1,8 @@
 package org.telecom.billingservice.usermag.handleservice;
 
 
+import java.util.List;
+
 import org.telecom.billingservice.bean.UserInfoBean;
 
 /**
@@ -14,6 +16,11 @@ public interface IAccountHandleService {
 	 * @param user 账务账号实体
 	 */
 void saveUserInfoBean(UserInfoBean user);
+/**
+ * 批量添加账务账号
+ * @param users 账务账号集合
+ */
+void saveUserInfoBeans(List<UserInfoBean> users);
 
 /**
  * 修改账务账号，修改之前需要根据id查询，将要修改得属性更新后再使用该方法

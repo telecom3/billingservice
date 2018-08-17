@@ -54,15 +54,16 @@ public class AccountYearQueryMapperSqlProvider {
 	public String commonSQL(Map param) {
 		StringBuilder str = new StringBuilder();
 		str.append("where 1=1 ");
-		Object userName = param.get("userName");
-		Object osName = param.get("osName");
+        
+		Object userId = param.get("userId");
+		Object accountYear = param.get("accountYear");
 		
 		//判断是否为null拼接sql语句
-		if(userName!=null && !StringUtils.isEmpty(userName.toString())) {
-			str.append("and user_name ='"+userName+"' ");
+		if(userId!=null && !StringUtils.isEmpty(userId.toString())) {
+			str.append("and fk_user_id = '"+userId+"'");
 		}
-		if(osName!=null && !StringUtils.isEmpty(osName.toString())) {
-			str.append("and os_name ='"+osName+"' ");
+		if(accountYear!=null && !StringUtils.isEmpty(accountYear.toString())) {
+			str.append("and account_year like '%"+accountYear+"%'");
 		}
 		return str.toString();
 	}

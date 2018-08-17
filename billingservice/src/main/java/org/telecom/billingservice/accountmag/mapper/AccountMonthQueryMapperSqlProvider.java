@@ -25,6 +25,7 @@ public class AccountMonthQueryMapperSqlProvider {
 			str.append("select id,user_name,os_name,service_ip,account_year,account_month,count_time  from t_account_month "+commonSQL(param));
 			str.append(" limit "+param.get("index")+","+param.get("limit"));
 		}
+		
 		return str.toString();
 	}
 	
@@ -55,19 +56,23 @@ public class AccountMonthQueryMapperSqlProvider {
 		StringBuilder str = new StringBuilder();
 		str.append("where 1=1 ");
 		Object userName = param.get("userName");
-		Object osName = param.get("osName");
+		Object serviceIp = param.get("serviceIp");
+		Object accountMonth = param.get("accountMonth");
 		Object accountYear = param.get("accountYear");
-		
 		//判断是否为null拼接sql语句
 		if(userName!=null && !StringUtils.isEmpty(userName.toString())) {
 			str.append("and user_name ='"+userName+"' ");
 		}
-		if(osName!=null && !StringUtils.isEmpty(osName.toString())) {
-			str.append("and os_name ='"+osName+"' ");
+		if(serviceIp!=null && !StringUtils.isEmpty(serviceIp.toString())) {
+			str.append("and service_ip ='"+serviceIp+"' ");
+		}
+		if(accountMonth!=null && !StringUtils.isEmpty(accountMonth.toString())) {
+			str.append("and account_month  '"+accountMonth+"' ");
 		}
 		if(accountYear!=null && !StringUtils.isEmpty(accountYear.toString())) {
 			str.append("and account_year = '"+accountYear+"' ");
 		}
+		System.out.println( str.toString());
 		return str.toString();
 	}
 }
