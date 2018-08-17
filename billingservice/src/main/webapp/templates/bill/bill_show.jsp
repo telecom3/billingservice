@@ -30,7 +30,18 @@
 	    </tr> 
 	  </thead>
 	  <tbody id="tbody">
-	    
+	    <tr>
+	      <td>姓名</td>
+	      <td>张三</td>
+	    </tr>
+	    <tr>
+	      <td></td>
+	      <td>2016-11-28</td>
+	    </tr>
+	    <tr>
+	      <td>许闲心</td>
+	      <td>2016-11-28</td>
+	    </tr>
 	  </tbody>
 	</table>
       
@@ -42,11 +53,15 @@
 		url:"/billingservice/templates/bill/info?osName="+osName,
         dataType:"json",
         success:function(jsonData){
-        	var str="<tr><td>业务账号</td><td>"+jsonData.osName+"</td></tr>"+
-        	"<tr><td>服务器地址</td><td>"+jsonData.ipAddress+"</td></tr>"+
-        	"<tr><td>登出时间</td><td></td>"+jsonData.createTime+"</tr>"+
-        	"<tr><td>登入时间</td><td></td>"+jsonData.updateTime+"</tr>"
-        	+"<tr><td>支付状态</td><td></td>"+jsonData.businessState+"</tr>"
+        	var jsonData = eval (jsonData);
+        	console.info(jsonData.createTime)
+        	console.info(jsonData)
+        	var str="<tr><td>业务账号</td><td>"+jsonData.businessOs+"</td></tr>"+
+        	"<tr><td>服务器地址</td><td>"+jsonData.ipAdress+"</td></tr>"+
+        	"<tr><td>支付状态</td><td>"+jsonData.businessState+"</td></tr>"+
+        	"<tr><td>登出时间</td><td>"+jsonData.createTime+"</td></tr>"+
+        	"<tr><td>登入时间</td><td>"+jsonData.updateTime+"</td></tr>"
+        
         	
         	$("#tbody").html(str);
         },
@@ -55,7 +70,18 @@
         }
     
     })
+    function parseDateTime(dat)
+	 {
+	var date = new Date(dat.time);
+	var Y = date.getFullYear() + '-';
+	var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+	var D = date.getDate() + '';
+	
+	return Y+M+D;
+	 }
     
     </script>
+    
+   
     
 </html>
