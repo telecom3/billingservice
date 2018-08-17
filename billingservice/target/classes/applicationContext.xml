@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/jee
+            http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/data/jpa
+        	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	<!-- 第一步：引入外部配置文件 -->
+	<!-- 引入mp配置 -->
+	<import resource="classpath*:spring-activemq.xml"/>
+	<!-- 引入shiro配置 -->
+   <import resource="classpath*:spring-shiro.xml"/>
+	
+	<!-- 第二步：开启spring容器的自动扫描功能,并且排除WEB层的组件 -->
+	<context:component-scan base-package="org.telecom.billingservice">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<!-- 第三步：配置数据源连接池(读库) -->
+	<!-- druid 官方文档位置：https://github.com/alibaba/druid/ -->
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3308/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
+		<property name="username" value="root" />
+		<property name="password" value="901011" />
+
+		<!-- 最大连接池数量 -->
+		<property name="maxActive" value="20" />
+		<!-- 初始化时建立物理连接的个数 -->
+		<property name="initialSize" value="5" />
+		<!-- 获取连接时最大等待时间,单位是：毫秒 -->
+		<property name="maxWait" value="60000" />
+		<!-- 最小连接池数量 -->
+		<property name="minIdle" value="5" />
+		<!-- 有两个含义： 1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。 
+			2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 连接保持空闲而不被驱逐的最小时间，单位：毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性。应用程序从连接池中，申请连接的时候检测， 如果空闲时间大于timeBetweenEvictionRunsMillis， 
+			执行validationQuery检测连接是否有效。 -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 应用程序从连接池中，申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 是否缓存preparedStatement， 也就是PSCache。PSCache对支持游标的数据库性能提升巨大， 比如说oracle。在mysql下建议关闭。 -->
+		<property name="poolPreparedStatements" value="true" />
+		<!-- 缓存的preparedStatement的个数 -->
+		<property name="maxOpenPreparedStatements" value="20" />
+		<!-- 默认采用异步连接方式 -->
+		<property name="asyncInit" value="true" />
+		<!-- 配置校验语句 -->
+		<property name="validationQuery" value="select now() from dual"></property>
+
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件， 常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 
+			防御sql注入的filter:wall -->
+		<property name="filters" value="wall,stat" />
+
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+				<ref bean="log-filter" />
+			</list>
+		</property>
+
+	</bean>
+	
+	<!-- 第三步：配置数据源连接池(写库) -->
+	<!-- druid 官方文档位置：https://github.com/alibaba/druid/ -->
+	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3309/telecomservice?characterEncoding=utf-8&amp;allowMultiQueries=true" />
+		<property name="username" value="root" />
+		<property name="password" value="901011" />
+
+		<!-- 最大连接池数量 -->
+		<property name="maxActive" value="20" />
+		<!-- 初始化时建立物理连接的个数 -->
+		<property name="initialSize" value="5" />
+		<!-- 获取连接时最大等待时间,单位是：毫秒 -->
+		<property name="maxWait" value="60000" />
+		<!-- 最小连接池数量 -->
+		<property name="minIdle" value="5" />
+		<!-- 有两个含义： 1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。 
+			2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 连接保持空闲而不被驱逐的最小时间，单位：毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性。应用程序从连接池中，申请连接的时候检测， 如果空闲时间大于timeBetweenEvictionRunsMillis， 
+			执行validationQuery检测连接是否有效。 -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 应用程序从连接池中，申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 是否缓存preparedStatement， 也就是PSCache。PSCache对支持游标的数据库性能提升巨大， 比如说oracle。在mysql下建议关闭。 -->
+		<property name="poolPreparedStatements" value="true" />
+		<!-- 缓存的preparedStatement的个数 -->
+		<property name="maxOpenPreparedStatements" value="20" />
+		<!-- 默认采用异步连接方式 -->
+		<property name="asyncInit" value="true" />
+		<!-- 配置校验语句 -->
+		<property name="validationQuery" value="select now() from dual"></property>
+
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件， 常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 
+			防御sql注入的filter:wall -->
+		<property name="filters" value="wall,stat" />
+
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+				<ref bean="log-filter" />
+			</list>
+		</property>
+
+	</bean>
+	
+	<!-- 慢SQL记录 -->
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql -->
+		<property name="slowSqlMillis" value="200" />
+		<property name="logSlowSql" value="true" />
+	</bean>
+
+	<!-- log4j来作为慢查询日志记录框架 -->
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+		<property name="dataSourceLogEnabled" value="true" />
+		<property name="statementExecutableSqlLogEnable" value="true" />
+	</bean>
+
+	<!-- 自动载入注解 -->
+	<context:annotation-config />
+	<!-- 第四步，配置SessionFactory(JPA) -->
+	<bean id="localContainerEntityManagerFactoryBean"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 开启自动扫描功能，扫描使用了JPA规范（注解）完成ORM映射关系的实例类 -->
+		<property name="packagesToScan">
+			<list>
+				<value>org.telecom.billingservice.bean</value>
+				<value>org.telecom.billingservice.administratormag</value>
+				<value>org.telecom.billingservice.authoritymag</value>
+				<value>org.telecom.billingservice.billmag</value>
+				<value>org.telecom.billingservice.logmag</value>
+				<value>org.telecom.billingservice.publicservicemag</value>
+				<value>org.telecom.billingservice.selfservicemag</value>
+				<value>org.telecom.billingservice.statementmag</value>
+				<value>org.telecom.billingservice.tariffmag</value>
+				<value>org.telecom.billingservice.usermag</value>
+			</list>
+		</property>
+		<!-- 配置JPA采用Hibernate底层框架实现 -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<!-- session关闭时，连接自动释放 -->
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<!-- 当数据库将长时间没有访问的连接自动断开之后， hibernate框架会自动重新建立连接 -->
+				<prop key="hibernate.autoReconnect">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="org.telecom.billingservice.bean" />
+	</bean>
+
+	<!-- 配置mybatis的mapper注解扫描 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.telecom.billingservice.*.mapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="dataSource" class="org.telecom.billingservice.util.ChooseDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- write -->
+				<entry key="write" value-ref="masterDataSource" />
+				<!-- read -->
+				<entry key="read" value-ref="slaveDataSource" />
+			</map>
+
+		</property>
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+	</bean>
+
+	<!-- 激活自动代理功能 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 配置数据库注解aop -->
+	<bean id="dataSourceAspect" class="org.telecom.billingservice.aspect.DataSourceAspect" />
+	<!-- <aop:config>
+		<aop:aspect id="c" ref="dataSourceAspect">
+			<aop:pointcut id="tx"
+				expression="execution(* org.telecom.billingservice.*mag.mapper.*.*(..))" />
+			<aop:before pointcut-ref="tx" method="before" />
+		</aop:aspect>
+	</aop:config> -->
+
+	<!-- 第六步，配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="localContainerEntityManagerFactoryBean"></property>
+	</bean>
+	<!-- 将JPA接口与SessionFactory进行关联 -->
+	<jpa:repositories base-package="org.telecom.billingservice"
+		entity-manager-factory-ref="localContainerEntityManagerFactoryBean"></jpa:repositories>
+
+	<!-- 第七步，配置spring事务管理手段 -->
+	<!-- 开启事务的注解驱动支持 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 第八步：开启切面的动态代理支持 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+</beans>
+	
